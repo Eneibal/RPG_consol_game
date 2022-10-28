@@ -7,6 +7,10 @@ private:
 	double x_pos;
 	double y_pos;
 
+	Inventory inventory;
+	Weapon weapon;
+	Armor armor;
+
 	string name;
 	int level;
 	int exp;

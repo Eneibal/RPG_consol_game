@@ -22,6 +22,9 @@ Game::~Game()
 void Game::init_game()
 {
 	create_new_character();
+	Weapon w1(2, 5, "DDk", 1, 100, 100, 1);
+	cout << w1.toString() << endl;
+	system("pause");
 }
 
 MainMenu Game::get_main_menu_choice()
@@ -149,8 +152,8 @@ void Game::load_character()
 			//check double coppy last character
 			if (name !="")
 			{
-				Character temp(name);
-				character.push_back(Character(temp));
+				//Character temp(name);
+				//character.push_back(Character(temp));
 				cout << "Character: " << name << " loaded!" << endl;
 			}
 		}

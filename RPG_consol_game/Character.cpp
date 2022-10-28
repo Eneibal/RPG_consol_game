@@ -46,14 +46,17 @@ void Character::initialize(const string name_)
 	dexterity = 5;
 	intelligence = 5;
 
-	hp = 10;
-	hp_max = 10;
-	stamina = 10;
-	stamina_max = 10;
-	damage_min = 1;
-	damage_max = 4;
-	defence = 1;
-	luck = 1;
+	
+	hp_max = (vitality *2)+(strenght / 2);
+	hp = hp_max;
+	
+	stamina_max = vitality + (strenght / 2 )+(dexterity /3);
+	stamina = stamina_max;
+
+	damage_min = strenght;
+	damage_max = strenght +2;
+	defence = dexterity + (intelligence /2);
+	luck = intelligence;
 
 	stat_points = 0;
 	skill_points = 0;

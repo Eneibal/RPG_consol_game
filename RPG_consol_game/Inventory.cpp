@@ -23,13 +23,9 @@ void Inventory::expand()
 
 	for (size_t i = 0; i < nr_of_items; i++)
 	{
-		temp_arr[i] = new Item(*item_arr[i]);
+		temp_arr[i] = item_arr[i];
 	}
 
-	for (size_t i = 0; i < nr_of_items; i++)
-	{
-		delete item_arr[i];
-	}
 
 	delete item_arr;
 	item_arr = temp_arr;
@@ -51,7 +47,7 @@ void Inventory::add_item(const Item& item)
 	{
 		expand();
 	}
-	item_arr[nr_of_items++] = new Item(item);
+	item_arr[nr_of_items++] = item.clone();
 }
 void Inventory::remove_item(int index)
 {
