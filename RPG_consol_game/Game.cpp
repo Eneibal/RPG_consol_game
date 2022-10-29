@@ -22,9 +22,6 @@ Game::~Game()
 void Game::init_game()
 {
 	create_new_character();
-	Weapon w1(2, 5, "DDk", 1, 100, 100, 1);
-	cout << w1.toString() << endl;
-	system("pause");
 }
 
 MainMenu Game::get_main_menu_choice()
@@ -166,4 +163,9 @@ void Game::load_character()
 		cout << "Create new character \n\n";
 		create_new_character();
 	}
+}
+
+void Game::travel()
+{
+
 }

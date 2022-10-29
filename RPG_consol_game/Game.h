@@ -40,6 +40,7 @@ public:
 	void create_new_character();
 	void save_character();
 	void load_character();
+	void travel();
 	//Accessors
 	bool get_playing()const;
 };

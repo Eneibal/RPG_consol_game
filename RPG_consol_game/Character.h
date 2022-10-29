@@ -1,15 +1,21 @@
 #pragma once
 #include"Inventory.h"
-
+#include"Enemy.h"
 class Character
 {
 private:
 	double x_pos;
 	double y_pos;
 
+	int distanc_travelled;
+
 	Inventory inventory;
 	Weapon weapon;
-	Armor armor;
+	Armor armor_head;
+	Armor armor_chest;
+	Armor armor_arms;
+	Armor armor_legs;
+	int gold;
 
 	string name;
 	int level;
@@ -28,6 +34,7 @@ private:
 	int damage_min;
 	int damage_max;
 	int defence;
+	int accuracy;
 	int luck;
 
 	int stat_points;
@@ -56,6 +63,8 @@ public:
 	const int& get_damage_min()const;
 	const int& get_damage_max()const;
 	const int& get_defence()const;
+	const int& get_luck()const;
+	const int& get_accuracy()const;
 
 	//Modifier
 

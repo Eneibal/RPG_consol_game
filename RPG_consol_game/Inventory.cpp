@@ -2,9 +2,10 @@
 
 Inventory::Inventory()
 {
-	cap = 10;
+	cap = 5;
 	nr_of_items = 0;
 	item_arr = new Item * [cap];
+	initialize();
 }
 
 Inventory::~Inventory()
@@ -14,6 +15,33 @@ Inventory::~Inventory()
 		delete item_arr[i];
 	}
 	delete[]item_arr;
+}
+
+Inventory::Inventory(const Inventory& obj)
+{
+	cap = obj.cap;
+	nr_of_items = obj.nr_of_items;
+	item_arr = new Item * [cap];
+
+	for (size_t i = 0; i < nr_of_items; i++)
+	{
+		item_arr[i] = obj.item_arr[i]->clone();
+	}
+	initialize(nr_of_items);
+}
+
+int Inventory::size()const
+{
+	return nr_of_items;
+}
+
+Item& Inventory::operator[](const int index)
+{
+	if (index <0 || index >= nr_of_items)
+	{
+		throw("BAD INDX!");
+	}
+	return *item_arr[index];
 }
 
 void Inventory::expand()

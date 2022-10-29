@@ -5,6 +5,9 @@ Character::Character()
 	x_pos = 0.0;
 	y_pos = 0.0;
 
+	distanc_travelled = 0;
+
+	gold=0;
 	name="";
 	level=0;
 	exp=0;
@@ -22,6 +25,7 @@ Character::Character()
 	damage_min=0;
 	damage_max=0;
 	defence=0;
+	accuracy = 0;
 	luck = 0;
 
 	stat_points = 0;
@@ -34,6 +38,8 @@ Character::~Character()
 //Functions
 void Character::initialize(const string name_)
 {
+	distanc_travelled = 0;
+	gold = 100;
 	name = name_;
 	level = 1;
 	exp = 0;
@@ -56,6 +62,7 @@ void Character::initialize(const string name_)
 	damage_min = strenght;
 	damage_max = strenght +2;
 	defence = dexterity + (intelligence /2);
+	accuracy = (dexterity / 2);
 	luck = intelligence;
 
 	stat_points = 0;
@@ -77,6 +84,7 @@ void Character::print_stats()const
 	cout << "Stamina: " << stamina << " / " << stamina_max << endl;
 	cout << "= Damage: " << damage_min << " - " << damage_max << endl;
 	cout << "= Defence: " << defence << endl;
+	cout << "= Accuracy: " << accuracy << endl;
 	cout << "= Luck: " << luck << endl;
 	cout << endl;
 }
@@ -163,4 +171,14 @@ const int& Character::get_damage_max() const
 const int& Character::get_defence() const
 {
 	return defence;
+}
+
+const int& Character::get_luck() const
+{
+	return luck;
+}
+
+const int& Character::get_accuracy() const
+{
+	return accuracy;
 }
