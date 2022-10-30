@@ -53,6 +53,7 @@ public:
 	//Accessors
 	const double& get_x()const;
 	const double& get_y()const;
+	const int& get_dist_travel()const;
 	const string& get_name()const;
 	const int& get_level()const;
 	const int& get_exp()const;
@@ -67,7 +68,8 @@ public:
 	const int& get_accuracy()const;
 
 	//Modifier
-
+	void set_dist_travelled(int distance_);
+	void travel();
 
 };
 

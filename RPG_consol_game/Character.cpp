@@ -123,6 +123,11 @@ string Character::get_as_string()const
 		+ to_string(skill_points);
 }
 
+const int& Character::get_dist_travel() const
+{
+	return distanc_travelled;
+}
+
 const string& Character::get_name() const
 {
 	return name;
@@ -181,4 +186,14 @@ const int& Character::get_luck() const
 const int& Character::get_accuracy() const
 {
 	return accuracy;
+}
+
+void Character::set_dist_travelled(int distance_)
+{
+	distanc_travelled = distance_;
+}
+
+void Character::travel()
+{
+	distanc_travelled++;
 }

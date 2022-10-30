@@ -167,5 +167,9 @@ void Game::load_character()
 
 void Game::travel()
 {
+	character[active_characters].travel();
 
+	Event ev;
+
+	ev.gererate_event(character[active_characters]);
 }

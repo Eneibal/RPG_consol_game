@@ -1,9 +1,9 @@
 #pragma once
-#include"Character.h"
-// next 7
+//
+#include"Event.h"
+
 #include<vector>
 #include<ctime>
-#include<fstream>
 enum MainMenu
 {
 	QUIT=1,
