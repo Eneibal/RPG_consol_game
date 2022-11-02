@@ -26,6 +26,12 @@ void Game::init_game()
 
 MainMenu Game::get_main_menu_choice()
 {
+	if (character[active_characters].get_exp() >=
+		character[active_characters].get_exp_next())
+	{
+		cout << "LEVEL UP AVALIBLE! \n\n";
+		system("pause");
+	}
 	system("cls");
 	cout << "\n =Main Menu= \n" << endl;
 	cout << "\n" << (int)MainMenu::QUIT << ". Quit" << endl;
@@ -57,13 +63,15 @@ MainMenu Game::get_main_menu_choice()
 
 void Game::main_menu()
 {
+
 	MainMenu choice;
 	while ((choice = get_main_menu_choice()) != MainMenu::QUIT)//!= MainMenu::QUIT
 	{
+
 		switch (choice)
 		{
 		case TRAVEL:
-
+			travel();
 			system("pause");
 			break;
 		case SHOP:
@@ -71,7 +79,7 @@ void Game::main_menu()
 			system("pause");
 			break;
 		case LEVELUP:
-
+			character[active_characters].level_up();
 			system("pause");
 			break;
 		case REST:

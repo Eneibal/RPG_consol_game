@@ -45,7 +45,16 @@ string Puzzle::get_as_string()
 		load_answers += to_string(i) + ": " + answers[i] + "\n";
 	}
 
+	//test return
+	//return qustion + "\n" + "\n"
+	//	+ load_answers + "\n"
+	//	+ to_string(correct_answer)+"\n";
+
 	return qustion + "\n" + "\n"
-		+ load_answers + "\n"
-		+ to_string(correct_answer)+"\n";
+		+ load_answers + "\n";
+}
+
+const int& Puzzle::get_correct_ans() const
+{
+	return correct_answer;
 }

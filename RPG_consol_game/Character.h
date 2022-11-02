@@ -68,8 +68,9 @@ public:
 	const int& get_accuracy()const;
 
 	//Modifier
-	void set_dist_travelled(int distance_);
+	void set_dist_travelled(int  distance_);
 	void travel();
+	void gain_exp(const int exp_);
 
 };
 

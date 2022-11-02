@@ -15,5 +15,7 @@ public:
 	~Puzzle();
 
 	string get_as_string();
+
+	const int& get_correct_ans()const;
 };
 

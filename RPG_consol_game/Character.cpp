@@ -96,13 +96,18 @@ void Character::level_up()
 		exp -= exp_next;
 
 		level++;
-		exp = 0;
 		exp_next = static_cast<int>((50 / 3) * ((pow(level, 3) -
 			6 * pow(level, 2)) +
 			17 * level - 12)) + 100;
 
 		stat_points++;
 		skill_points++;
+
+		cout << "You are now LEVEL " << level << "!" << endl;
+	}
+	else
+	{
+		cout << "NOT ENOUGHT EXP!\n\n";
 	}
 }
 
@@ -188,7 +193,9 @@ const int& Character::get_accuracy() const
 	return accuracy;
 }
 
-void Character::set_dist_travelled(int distance_)
+//Modifire
+
+void Character::set_dist_travelled(int  distance_)
 {
 	distanc_travelled = distance_;
 }
@@ -196,4 +203,9 @@ void Character::set_dist_travelled(int distance_)
 void Character::travel()
 {
 	distanc_travelled++;
+}
+
+void Character::gain_exp(int exp_)
+{
+	exp += exp_;
 }
