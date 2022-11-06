@@ -53,7 +53,19 @@ void Event::puzzle_encounter(Character& character_)
 
 		cout << "\nYour ANSWER: " << endl;
 		cin >> user_ans;
-		cout << "\n";
+		
+		while (cin.fail())//check cin
+		{
+			cout << "Faulty input!" << endl;
+			cin.clear();
+			cin.ignore(100, '\n');
+			cout << endl << "\nYour ANSWER: ";
+			cin >> user_ans;
+		}
+		cin.ignore(100, '\n');
+		cout << endl;
+
+
 		if (puzzle.get_correct_ans() == user_ans)
 		{
 			completed = true;

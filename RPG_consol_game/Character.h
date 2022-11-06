@@ -1,9 +1,19 @@
 #pragma once
 #include"Inventory.h"
 #include"Enemy.h"
+
+enum LevelUpCharacter
+{
+	STRENGHT = 1,
+	VITALITY,
+	DEXTERITY,
+	INTELLIGENCE,
+};
+
 class Character
 {
 private:
+	LevelUpCharacter get_level_up_stats(int stat_);
 
 	int distanc_travelled;
 
@@ -50,9 +60,10 @@ public:
 	//Funcrions
 	void initialize(const string name_);
 	void print_stats()const;
-	void level_up();
 	string get_as_string()const;
+	void level_up();	
 	void update_stats();
+	void add_to_stat(int stat_, int value_);
 	//Accessors
 
 	const int& get_dist_travel()const;
@@ -60,6 +71,7 @@ public:
 	const int& get_level()const;
 	const int& get_exp()const;
 	const int& get_exp_next()const;
+	const int& get_stat_points()const;
 	const int& get_hp()const;
 	const int& get_hp_max()const;
 	const int& get_stamina()const;

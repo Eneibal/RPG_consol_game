@@ -18,11 +18,6 @@ Game::~Game()
 {
 
 }
-//Functions
-void Game::init_game()
-{
-	create_new_character();
-}
 
 MainMenu Game::get_main_menu_choice()
 {
@@ -55,6 +50,7 @@ MainMenu Game::get_main_menu_choice()
 		cout << endl << "Choice ";
 		cin >> choice;
 	}
+
 	cin.ignore(100, '\n');
 	cout << endl;
 
@@ -79,7 +75,7 @@ void Game::main_menu()
 			system("pause");
 			break;
 		case LEVELUP:
-			character[active_characters].level_up();
+			level_up_character();
 			system("pause");
 			break;
 		case REST:
@@ -113,6 +109,68 @@ void Game::main_menu()
 	{
 		playing = false;
 	}
+}
+
+LevelUpCharacter Game::get_level_up_character()
+{
+	system("cls");
+	cout << "You have statpoints to allocate !\n\n";
+	cout << "Stat to upgrade: ";
+	cout << "\n" << (int)LevelUpCharacter::STRENGHT << ". Stranght" << endl;
+	cout << "\n" << (int)LevelUpCharacter::VITALITY << ". Vitality" << endl;
+	cout << "\n" << (int)LevelUpCharacter::DEXTERITY << ". Dexterity" << endl;
+	cout << "\n" << (int)LevelUpCharacter::INTELLIGENCE << ". Intelligence" << endl;
+
+	cout << "\n\n" << "Choice: ";
+	cin >> choice;
+
+	while (cin.fail() || choice > 4)//choice =4 levelUpCharacter have only 4 stats
+	{
+		cout << "Faulty input!" << endl;
+		cin.clear();
+		cin.ignore(100, '\n');
+		cout << endl << "Stat to upgrade: ";
+		cin >> choice;
+	}
+
+	cin.ignore(100, '\n');
+	cout << endl;
+
+	return static_cast<LevelUpCharacter>(choice);
+}
+
+void Game::level_up_character()
+{
+	character[active_characters].level_up();
+
+	if (character[active_characters].get_stat_points() > 0)
+	{
+		LevelUpCharacter choice;
+		choice = get_level_up_character();
+		switch (choice)
+		{
+		case STRENGHT:
+			character[active_characters].add_to_stat(1, 1);
+			break;
+		case VITALITY:
+			character[active_characters].add_to_stat(2, 1);
+			break;
+		case DEXTERITY:
+			character[active_characters].add_to_stat(3, 1);
+			break;
+		case INTELLIGENCE:
+			character[active_characters].add_to_stat(4, 1);
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+//Functions
+void Game::init_game()
+{
+	create_new_character();
 }
 
 void Game::create_new_character()

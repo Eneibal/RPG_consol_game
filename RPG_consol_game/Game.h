@@ -17,6 +17,8 @@ enum MainMenu
 	LOADCHARACTER,
 };
 
+
+
 class Game
 {
 private:
@@ -24,6 +26,7 @@ private:
 	bool playing;
 
 	MainMenu get_main_menu_choice();
+	LevelUpCharacter get_level_up_character();
 	//Character related
 	int active_characters;
 	vector<Character> character;
@@ -38,6 +41,7 @@ public:
 	void main_menu();
 	void init_game();
 	void create_new_character();
+	void level_up_character();
 	void save_character();
 	void load_character();
 	void travel();

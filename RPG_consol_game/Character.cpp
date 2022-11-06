@@ -134,12 +134,50 @@ void Character::level_up()
 
 		stat_points++;
 		skill_points++;
+		update_stats();
 
 		cout << "You are now LEVEL " << level << "!" << endl;
 	}
 	else
 	{
 		cout << "NOT ENOUGHT EXP!\n\n";
+	}
+}
+
+LevelUpCharacter Character::get_level_up_stats(int stat_)
+{
+	return static_cast<LevelUpCharacter>(stat_);
+}
+
+void Character::add_to_stat(int stat_, int value_)
+{
+	if (stat_points < value_)
+	{
+		cout << "ERROR! NOT ENOUGHT STATPOINTS!" << endl;
+	}
+	else
+	{
+		LevelUpCharacter choice;
+
+		switch (choice = get_level_up_stats(stat_))
+		{
+		case STRENGHT:
+			strenght += value_;
+			break;
+		case VITALITY:
+			vitality += value_;
+			break;
+		case DEXTERITY:
+			dexterity += value_;
+			break;
+		case INTELLIGENCE:
+			intelligence += value_;
+			break;
+		default:
+			cout << "NO SUCH STAT!" << endl;
+			break;
+		}
+		stat_points -= value_;
 	}
 }
 
@@ -198,6 +236,11 @@ const int& Character::get_exp() const
 const int& Character::get_exp_next() const
 {
 	return exp_next;
+}
+
+const int& Character::get_stat_points()const
+{
+	return stat_points;
 }
 
 const int& Character::get_hp() const
