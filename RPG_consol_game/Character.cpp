@@ -2,9 +2,6 @@
 
 Character::Character()
 {
-	x_pos = 0.0;
-	y_pos = 0.0;
-
 	distanc_travelled = 0;
 
 	gold=0;
@@ -30,6 +27,41 @@ Character::Character()
 
 	stat_points = 0;
 	skill_points = 0;
+}
+
+Character::Character(string name_, int distance_travelled_,
+	int gold_, int level_,
+	int exp_, int strenght_, int vitality_,
+	int dexterity_, int intelligence_,
+	int hp_, int stamina_, int stat_points_, int skillpoints_)
+{
+	distanc_travelled = distance_travelled_;
+
+	gold = gold_;
+	name = name_;
+	level = level_;
+	exp = exp_;
+	exp_next = 0;
+
+	strenght = strenght_;
+	vitality = vitality_;
+	dexterity = dexterity_;
+	intelligence = intelligence_;
+
+	hp = hp_;
+	hp_max = 0;
+	stamina = stamina_;
+	stamina_max = 0;
+	damage_min = 0;
+	damage_max = 0;
+	defence = 0;
+	accuracy = 0;
+	luck = 0;
+
+	stat_points = stat_points_;
+	skill_points = skillpoints_;
+
+	update_stats();
 }
 
 Character::~Character()
@@ -111,13 +143,28 @@ void Character::level_up()
 	}
 }
 
+void Character::update_stats()
+{
+	exp_next = static_cast<int>((50 / 3) * ((pow(level, 3) -
+		6 * pow(level, 2)) +
+		17 * level - 12)) + 100;
+
+	hp_max = (vitality * 2) + (strenght / 2);
+	stamina_max = vitality + (strenght / 2) + (dexterity / 3);
+	damage_min = strenght;
+	damage_max = strenght + 2;
+	defence = dexterity + (intelligence / 2);
+	accuracy = (dexterity / 2);
+	luck = intelligence;
+}
+
 string Character::get_as_string()const
 {
-	return to_string(x_pos) + " "
-		+ to_string(y_pos) + " "
-		+ name + " "
+	return name +" "
+		+ to_string(distanc_travelled) + " "
+		+ to_string(gold)+" "
+		+ to_string(level)+" "
 		+ to_string(exp) + " "
-		+ to_string(exp_next) + " "
 		+ to_string(strenght) + " "
 		+ to_string(vitality) + " "
 		+ to_string(dexterity) + " "

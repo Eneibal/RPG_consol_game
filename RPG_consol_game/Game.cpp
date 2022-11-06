@@ -96,9 +96,12 @@ void Game::main_menu()
 			system("pause");
 			break;
 		case SAVECHARACTER:
-
+			save_character();
+			system("pause");
 			break;
 		case LOADCHARACTER:
+			load_character();
+			system("pause");
 			break;
 		default:
 			cout << "Invalid choice in main menu: " << (int)choice << endl;
@@ -145,7 +148,22 @@ void Game::load_character()
 	character.clear();
 
 	string name = "";
-	
+	int distanc_travelled=0;
+	int gold=0;
+	int level=0;
+	int exp=0;
+
+	int strenght=0;
+	int vitality=0;
+	int dexterity=0;
+	int intelligence=0;
+
+	int hp=0;
+	int stamina=0;
+
+	int stat_points=0;
+	int skill_points=0;
+
 	if (in_file.is_open())
 	{
 		while (!in_file.eof())//(getline(in_file,string()))
@@ -153,12 +171,26 @@ void Game::load_character()
 			name = "";
 
 			in_file >> name;
+			in_file >> distanc_travelled;
+			in_file >> gold;
+			in_file >> level;
+			in_file >> exp;
+			in_file >> strenght;
+			in_file >> vitality;
+			in_file >> dexterity;
+			in_file >> intelligence;
+			in_file >> hp;
+			in_file >> stamina;
+			in_file >> stat_points;
+			in_file >> skill_points;
 			
 			//check double coppy last character
 			if (name !="")
 			{
-				//Character temp(name);
-				//character.push_back(Character(temp));
+				Character temp(name, distanc_travelled,gold,level,exp,
+					strenght,vitality,dexterity,intelligence,
+					hp,stamina,stat_points,skill_points);
+				character.push_back(Character(temp));
 				cout << "Character: " << name << " loaded!" << endl;
 			}
 		}

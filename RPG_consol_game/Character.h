@@ -4,8 +4,6 @@
 class Character
 {
 private:
-	double x_pos;
-	double y_pos;
 
 	int distanc_travelled;
 
@@ -15,8 +13,8 @@ private:
 	Armor armor_chest;
 	Armor armor_arms;
 	Armor armor_legs;
-	int gold;
 
+	int gold;
 	string name;
 	int level;
 	int exp;
@@ -42,6 +40,11 @@ private:
 
 public:
 	Character();
+	Character(string name_,int distance_travelled_,
+		int gold_,int level_,
+		int exp_,int strenght_,int vitality_,
+		int dexterity_,int intelligence_,
+		int hp_,int stamina_,int stat_points_,int skillpoints_);
 	~Character();
 
 	//Funcrions
@@ -49,10 +52,9 @@ public:
 	void print_stats()const;
 	void level_up();
 	string get_as_string()const;
-
+	void update_stats();
 	//Accessors
-	const double& get_x()const;
-	const double& get_y()const;
+
 	const int& get_dist_travel()const;
 	const string& get_name()const;
 	const int& get_level()const;
