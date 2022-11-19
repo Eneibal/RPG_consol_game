@@ -163,15 +163,19 @@ void Character::add_to_stat(int stat_, int value_)
 		{
 		case STRENGHT:
 			strenght += value_;
+			cout <<"STRENGHT Increased!";
 			break;
 		case VITALITY:
 			vitality += value_;
+			cout << "VITALITY Increased!";
 			break;
 		case DEXTERITY:
 			dexterity += value_;
+			cout << "DEXTERITY Increased!";
 			break;
 		case INTELLIGENCE:
 			intelligence += value_;
+			cout << "INTELLIGENCE Increased!";
 			break;
 		default:
 			cout << "NO SUCH STAT!" << endl;

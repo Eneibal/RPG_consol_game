@@ -171,6 +171,20 @@ void Game::level_up_character()
 void Game::init_game()
 {
 	create_new_character();
+	dArr<int> ints;
+	for (size_t i = 0; i < 20; i++)
+	{
+		ints.push(i);
+		cout << ints[i] << "\n"; 
+	}
+	ints.remove(2);
+	ints.remove(3);
+	ints.remove(4);
+	for (size_t i = 0; i < 16; i++)
+	{
+		cout << ints[i] << "\n";
+	}
+	system("pause");
 }
 
 void Game::create_new_character()
