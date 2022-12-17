@@ -1,7 +1,6 @@
 #pragma once
 
 #include"Event.h"
-#include"dArr.h"
 
 #include<vector>
 #include<ctime>
@@ -16,6 +15,7 @@ enum MainMenu
 	CREATENEWCHARACTER,
 	SAVECHARACTER,
 	LOADCHARACTER,
+	SELECTCHARACTER,
 };
 
 
@@ -23,15 +23,20 @@ enum MainMenu
 class Game
 {
 private:
+	MainMenu get_main_menu_choice();
+	LevelUpCharacter get_level_up_character();
+
 	int choice;
 	bool playing;
 
-	MainMenu get_main_menu_choice();
-	LevelUpCharacter get_level_up_character();
 	//Character related
 	int active_characters;
 	vector<Character> character;
 	string file_name;
+
+	//Enemis
+	dArr<Enemy> enemies;
+
 public:
 	Game();
 	~Game();
@@ -45,6 +50,7 @@ public:
 	void level_up_character();
 	void save_character();
 	void load_character();
+	void select_character();
 	void travel();
 	//Accessors
 	bool get_playing()const;

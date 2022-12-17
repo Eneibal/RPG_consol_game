@@ -10,14 +10,14 @@ Event::~Event()
 {
 }
 
-void Event::gererate_event(Character & character_)
+void Event::gererate_event(Character & character_, dArr<Enemy>& enemies )
 {
 	int i = rand() % nr_of_events;
 	switch (i)
 	{
 	case 0:
 		//Enemy encounter
-		enemy_encounter(character_);
+		enemy_encounter(character_,enemies);
 		break;
 	case 1:
 		//puzzle
@@ -31,9 +31,15 @@ void Event::gererate_event(Character & character_)
 }
 
 //Different events
-void Event::enemy_encounter(Character& character_)
+void Event::enemy_encounter(Character& character_, dArr<Enemy>& enemies_)
 {
+	bool escape = false;
+	bool playerDefeated = false;
+	bool enemyDefeated = false;
+	while (!escape && !playerDefeated && !enemyDefeated)
+	{
 
+	}
 }
 
 void Event::puzzle_encounter(Character& character_)
