@@ -27,6 +27,7 @@ MainMenu Game::get_main_menu_choice()
 		system("pause");
 	}
 	system("cls");
+
 	cout << "\n =Main Menu= \n" << endl;
 	cout << "= Active character: " << character[active_characters].get_name() << " Nr: "
 		<<active_characters+1<<" / "<<character.size() << endl;
@@ -36,10 +37,11 @@ MainMenu Game::get_main_menu_choice()
 	cout << "\n" << (int)MainMenu::LEVELUP << ". Level up" << endl;
 	cout << "\n" << (int)MainMenu::REST << ". Rest" << endl;
 	cout << "\n" << (int)MainMenu::CHARACTERSHEET << ". Character sheet" << endl;
+	cout << "\n" << (int)MainMenu::SELECTCHARACTER << ". Select character" << endl;
 	cout << "\n" << (int)MainMenu::CREATENEWCHARACTER << ". Create new character" << endl;
 	cout << "\n" << (int)MainMenu::SAVECHARACTER << ". Save character" << endl;
 	cout << "\n" << (int)MainMenu::LOADCHARACTER << ". Load character" << endl;
-	cout << "\n" << (int)MainMenu::SELECTCHARACTER << ". Select character" << endl;
+	
 
 	cout << "\n\n" << "Choice: ";
 	cin >> choice;
@@ -65,7 +67,6 @@ void Game::main_menu()
 	MainMenu choice;
 	while ((choice = get_main_menu_choice()) != MainMenu::QUIT)//!= MainMenu::QUIT
 	{
-
 		switch (choice)
 		{
 		case TRAVEL:

@@ -257,6 +257,11 @@ const int& Character::get_hp_max() const
 	return hp_max;
 }
 
+const bool Character::is_alive()
+{
+	return hp > 0;
+}
+
 const int& Character::get_stamina() const
 {
 	return stamina;
@@ -265,6 +270,11 @@ const int& Character::get_stamina() const
 const int& Character::get_damage_min() const
 {
 	return damage_min;
+}
+
+const int& Character::get_damage()const
+{
+	return rand() % damage_max + damage_min;
 }
 
 const int& Character::get_damage_max() const
@@ -302,4 +312,13 @@ void Character::travel()
 void Character::gain_exp(int exp_)
 {
 	exp += exp_;
+}
+
+void Character::take_damage(const int damage_)
+{
+	hp -= damage_;
+	if (hp <=0)
+	{
+		hp = 0;
+	}
 }

@@ -74,8 +74,10 @@ public:
 	const int& get_stat_points()const;
 	const int& get_hp()const;
 	const int& get_hp_max()const;
+	const bool is_alive();
 	const int& get_stamina()const;
 	const int& get_damage_min()const;
+	const int& get_damage()const;
 	const int& get_damage_max()const;
 	const int& get_defence()const;
 	const int& get_luck()const;
@@ -85,6 +87,6 @@ public:
 	void set_dist_travelled(int  distance_);
 	void travel();
 	void gain_exp(const int exp_);
-
+	void take_damage(const int damage_);
 };
 

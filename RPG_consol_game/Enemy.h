@@ -20,7 +20,10 @@ public:
 	bool is_alive();
 	string get_as_string()const;
 	void take_damage(int damage);
+	int get_level()const;
 	int get_damage()const;
 	int get_exp()const;
+	int get_Hp()const;
+	int get_HpMax()const;
 };
 

@@ -35,14 +35,34 @@ string Enemy::get_as_string() const
 void Enemy::take_damage(int damage) 
 {
 	hp -= damage;
+	if (hp <=0)
+	{
+		hp = 0;
+
+	}
 }
+int Enemy::get_level()const
+{
+	return level;
+}
+
 
 int Enemy::get_damage() const
 {
-	return rand()% damage_max - damage_min;
+	return rand()% damage_max + damage_min;
 }
 
 int Enemy::get_exp() const
 {
 	return level *100;
+}
+
+int Enemy::get_Hp()const
+{
+	return hp;
+}
+
+int Enemy::get_HpMax()const
+{
+	return hp_max;
 }
