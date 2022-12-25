@@ -8,9 +8,9 @@ Enemy::Enemy(int level_)
 	hp = hp_max;
 	damage_min = level * 4;
 	damage_max = level * 5;
-	drop_chance = rand() % 100;
-	defence = rand() % 100;
-	accuracy = rand() % 100;
+	drop_chance = rand() % 100+1;
+	defence = rand() %level * 5 +1;
+	accuracy = rand() % level *5 +1;
 }
 
 Enemy::~Enemy()
@@ -65,4 +65,14 @@ int Enemy::get_Hp()const
 int Enemy::get_HpMax()const
 {
 	return hp_max;
+}
+
+int Enemy::get_defence()const
+{
+	return defence;
+}
+
+int Enemy::get_Accuracy()const
+{
+	return accuracy;
 }

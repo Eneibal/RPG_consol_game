@@ -25,5 +25,7 @@ public:
 	int get_exp()const;
 	int get_Hp()const;
 	int get_HpMax()const;
+	int get_defence()const;
+	int get_Accuracy()const;
 };
 

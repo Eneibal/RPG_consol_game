@@ -75,30 +75,15 @@ void Character::initialize(const string name_)
 	name = name_;
 	level = 1;
 	exp = 0;
-	exp_next = static_cast<int>((50 / 3) * ((pow(level, 3) -
-		6 * pow(level, 2)) +
-		17 * level - 12)) + 100;
 
 	strenght = 5;
 	vitality = 5;
 	dexterity = 5;
-	intelligence = 5;
-
-	
-	hp_max = (vitality *2)+(strenght / 2);
-	hp = hp_max;
-	
-	stamina_max = vitality + (strenght / 2 )+(dexterity /3);
-	stamina = stamina_max;
-
-	damage_min = strenght;
-	damage_max = strenght +2;
-	defence = dexterity + (intelligence /2);
-	accuracy = (dexterity / 2);
-	luck = intelligence;
+	intelligence = 5;	
 
 	stat_points = 0;
 	skill_points = 0;
+	update_stats();
 }
 
 void Character::print_stats()const
@@ -193,11 +178,13 @@ void Character::update_stats()
 
 	hp_max = (vitality * 2) + (strenght / 2);
 	stamina_max = vitality + (strenght / 2) + (dexterity / 3);
+	stamina = stamina_max;
 	damage_min = strenght;
 	damage_max = strenght + 2;
 	defence = dexterity + (intelligence / 2);
-	accuracy = (dexterity / 2);
+	accuracy = (dexterity / 2) + intelligence;
 	luck = intelligence;
+
 }
 
 string Character::get_as_string()const

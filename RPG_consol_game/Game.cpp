@@ -157,16 +157,16 @@ void Game::level_up_character()
 		switch (choice)
 		{
 		case STRENGHT:
-			character[active_characters].add_to_stat(1, 1);
+			character[active_characters].add_to_stat(0, 1);
 			break;
 		case VITALITY:
-			character[active_characters].add_to_stat(2, 1);
+			character[active_characters].add_to_stat(1, 1);
 			break;
 		case DEXTERITY:
-			character[active_characters].add_to_stat(3, 1);
+			character[active_characters].add_to_stat(2, 1);
 			break;
 		case INTELLIGENCE:
-			character[active_characters].add_to_stat(4, 1);
+			character[active_characters].add_to_stat(3, 1);
 			break;
 		default:
 			break;

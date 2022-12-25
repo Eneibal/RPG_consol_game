@@ -65,7 +65,7 @@ void Event::enemy_encounter(Character& character_, dArr<Enemy>& enemies_)
 	int choice = 0;
 	//Coin toss for turn
 	int coinToss = rand() % 2 + 1;
-	if (coinToss ==1)
+	if (coinToss == 1)
 	{
 		playerTurn = true;
 	}
@@ -83,14 +83,17 @@ void Event::enemy_encounter(Character& character_, dArr<Enemy>& enemies_)
 
 	for (size_t i = 0; i < nrOfEnemies; i++)
 	{
-		enemies_.push(Enemy(character_.get_level()));
+		enemies_.push(Enemy(character_.get_level()+ rand() %3 ));
 	}
 
 	//Battle varibles
-	int attackRoll = 0;
-	int defendRoll = 0;
 	int damage = 0;
 	int gainExp = 0;
+	int playerTotal = 0;
+	int enemyTotal = 0;
+	int combatTotal = 0;
+	int combatRollPlayer = 0;
+	int combatRollEnemy = 0;
 
 	
 	while ((choice = get_battle_menu_choice())!= BattleMenu::ESCAPE && !playerDefeated && !enemyDefeated) // (!escape && !playerDefeated && !enemyDefeated)
@@ -114,8 +117,11 @@ void Event::enemy_encounter(Character& character_, dArr<Enemy>& enemies_)
 				
 				for (size_t i = 0; i < enemies_.size(); i++)
 				{
-					cout << i << ": " << enemies_[i].get_level()<<" - " 
-						<<"HP: " << enemies_[i].get_Hp() << "/" << enemies_[i].get_HpMax() << endl;
+					cout << i << ": level :  " << enemies_[i].get_level()<<" - " 
+						<<"HP: " << enemies_[i].get_Hp() << "/" << enemies_[i].get_HpMax()<<" - "
+						"Defence: "<<enemies_[i].get_defence() <<" - "
+						"Accuracy: " << enemies_[i].get_Accuracy()<< " - "
+						<< endl;
 				}
 				cout << endl;
 				cin >> choice;
@@ -132,9 +138,23 @@ void Event::enemy_encounter(Character& character_, dArr<Enemy>& enemies_)
 				cin.ignore(100, '\n');
 				cout << endl;
 
+				// Attack rol;
+				combatTotal = enemies_[choice].get_defence() + character_.get_accuracy();
+				enemyTotal = enemies_[choice].get_defence()/ (double)combatTotal *100 ;
+				playerTotal = character_.get_accuracy() /  (double)combatTotal * 100;
+				combatRollPlayer = rand() % playerTotal+1;
+				combatRollEnemy = rand() % enemyTotal+1;
 
-				attackRoll = rand() % 100 + 1;
-				if (attackRoll > 50 )//Hit
+				////Test 
+				//cout << combatTotal << endl;
+				//cout << enemyTotal << endl;
+				//cout << playerTotal << endl;
+				//cout << combatRollPlayer << endl;
+				//cout << combatRollEnemy << endl;
+
+				cout << "Player roll: " << combatRollPlayer << "\n";
+				cout << "Enemy roll: " << combatRollEnemy << "\n\n";
+				if (combatRollPlayer > combatRollEnemy )//Hit
 				{
 					cout << "HIT! " << "\n\n";
 					damage = character_.get_damage();
@@ -167,8 +187,9 @@ void Event::enemy_encounter(Character& character_, dArr<Enemy>& enemies_)
 			//End turn
 			playerTurn = false;
 		}
-		else if(!playerTurn && !escape && !enemyDefeated)
+		else if(!playerTurn && !playerDefeated && !escape && !enemyDefeated)
 		{
+			cout << "= ENEMY TURN =" << "\n";
 			//Enemy attack
 			for (size_t i = 0; i < enemies_.size(); i++)
 			{
