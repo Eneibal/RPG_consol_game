@@ -46,7 +46,7 @@ private:
 	int luck;
 
 	int stat_points;
-	int skill_points;
+	
 
 public:
 	Character();
@@ -54,7 +54,7 @@ public:
 		int gold_,int level_,
 		int exp_,int strenght_,int vitality_,
 		int dexterity_,int intelligence_,
-		int hp_,int stamina_,int stat_points_,int skillpoints_);
+		int hp_,int stamina_,int stat_points_);
 	~Character();
 
 	//Funcrions

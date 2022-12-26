@@ -1,5 +1,8 @@
 #pragma once
 #include "Item.h"
+
+enum arrmorType {HEAD =0 , CHEST, ARMS, LEGS};
+
 class Armor :
     public Item
 {
@@ -17,5 +20,10 @@ public:
 
     //Functions
     string toString();
+
+    //Accerssors
+    int get_defence()const;
+    int get_type()const;
+
 };
 

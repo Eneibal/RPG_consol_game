@@ -22,3 +22,13 @@ Weapon* Weapon::clone()const
 {
     return new Weapon(*this);
 }
+
+int Weapon::getDamageMin()const
+{
+    return damage_min;
+}
+
+int Weapon::getDamageMax()const
+{
+    return damage_max;
+}

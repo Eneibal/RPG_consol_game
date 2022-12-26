@@ -94,7 +94,6 @@ void Event::enemy_encounter(Character& character_, dArr<Enemy>& enemies_)
 	int combatTotal = 0;
 	int combatRollPlayer = 0;
 	int combatRollEnemy = 0;
-
 	
 	while ((choice = get_battle_menu_choice())!= BattleMenu::ESCAPE && !playerDefeated && !enemyDefeated) // (!escape && !playerDefeated && !enemyDefeated)
 	{
@@ -193,16 +192,34 @@ void Event::enemy_encounter(Character& character_, dArr<Enemy>& enemies_)
 			//Enemy attack
 			for (size_t i = 0; i < enemies_.size(); i++)
 			{
+				cout << "Enemy: " << i << "\n\n";
 
+				cout << "Player roll: " << combatRollPlayer;
+				cout << "Enemy roll: " << combatRollEnemy;
+				if (combatRollPlayer < combatRollEnemy)//hit
+				{
+					cout << "Hit" << "\n\n";
+					damage = enemies_[i].get_damage();
+					character_.take_damage(damage);
+
+					cout << "Damage: " << damage << "!" <<"\n\n";
+
+					if (!character_.is_alive())
+					{
+						cout << "YOU ARE DEFEATED!" << "\n\n";
+						playerDefeated = true;
+					}
+
+				}
+				else//MISS
+				{
+					cout << "MISSED! \n\n	";
+				}
 			}
 			//End turn
 			playerTurn = true;
 		}
-		
-
 		//Conditions
-
-
 		if (!character_.is_alive())
 		{
 			playerDefeated = true;

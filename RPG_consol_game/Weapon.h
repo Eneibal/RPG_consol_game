@@ -22,6 +22,9 @@ public:
     // Inherited via Item
     //virtual Item* clone() const override;
 
-
+    //Accessors
+    int getDamageMin()const;
+    int getDamageMax()const;
+    //Modifines
 };
 

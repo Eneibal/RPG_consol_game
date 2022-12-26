@@ -23,3 +23,13 @@ string Armor::toString()
     string str = to_string(type) + " " + to_string(defence);
     return str;
 }
+
+int Armor::get_defence()const
+{
+    return defence;
+}
+
+int Armor::get_type()const
+{
+    return type;
+}

@@ -6,8 +6,8 @@ Enemy::Enemy(int level_)
 	level = level_;
 	hp_max = level * 10;
 	hp = hp_max;
-	damage_min = level * 4;
-	damage_max = level * 5;
+	damage_min = level * 1;
+	damage_max = level * 3;
 	drop_chance = rand() % 100+1;
 	defence = rand() %level * 5 +1;
 	accuracy = rand() % level *5 +1;

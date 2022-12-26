@@ -63,58 +63,88 @@ MainMenu Game::get_main_menu_choice()
 
 void Game::main_menu()
 {
-
-	MainMenu choice;
-	while ((choice = get_main_menu_choice()) != MainMenu::QUIT)//!= MainMenu::QUIT
+	if (character[active_characters].is_alive())
 	{
-		switch (choice)
+
+
+		MainMenu choice;
+		while ((choice = get_main_menu_choice()) != MainMenu::QUIT)//!= MainMenu::QUIT
 		{
-		case TRAVEL:
-			travel();
-			system("pause");
-			break;
-		case SHOP:
+			switch (choice)
+			{
+			case TRAVEL:
+				travel();
+				system("pause");
+				break;
+			case SHOP:
 
-			system("pause");
-			break;
-		case LEVELUP:
-			level_up_character();
-			system("pause");
-			break;
-		case REST:
+				system("pause");
+				break;
+			case LEVELUP:
+				level_up_character();
+				system("pause");
+				break;
+			case REST:
 
-			system("pause");
-			break;
-		case CHARACTERSHEET:
-			character[active_characters].print_stats();
-			system("pause");
-			break;
-		case CREATENEWCHARACTER:
-			create_new_character();
-			save_character();
-			system("pause");
-			break;
-		case SAVECHARACTER:
-			save_character();
-			system("pause");
-			break;
-		case LOADCHARACTER:
-			load_character();
-			system("pause");
-			break;
-		case SELECTCHARACTER:
-			select_character();
-			system("pause");
-			break;
-		default:
-			cout << "Invalid choice in main menu: " << (int)choice << endl;
-			system("pause");
-			break;
+				system("pause");
+				break;
+			case CHARACTERSHEET:
+				character[active_characters].print_stats();
+				system("pause");
+				break;
+			case CREATENEWCHARACTER:
+				create_new_character();
+				save_character();
+				system("pause");
+				break;
+			case SAVECHARACTER:
+				save_character();
+				system("pause");
+				break;
+			case LOADCHARACTER:
+				load_character();
+				system("pause");
+				break;
+			case SELECTCHARACTER:
+				select_character();
+				system("pause");
+				break;
+			default:
+				cout << "Invalid choice in main menu: " << (int)choice << endl;
+				system("pause");
+				break;
+			}
+		}
+		if (MainMenu::QUIT)
+		{
+			playing = false;
 		}
 	}
-	if (MainMenu::QUIT)
+	else
 	{
-		playing = false;
+		cout << "\n = YOU ARE DEAD, LOAD ? = \n" << endl;
+		cout << "\n =(0) Yes, (1) No= \n" << endl;
+		cin >> choice;
+
+		while (cin.fail() || choice <0 || choice >1)//check cin
+		{
+			cout << "Faulty input!" << endl;
+			cin.clear();
+			cin.ignore(100, '\n');
+			cout << "\n =(0) Yes, (1) No= \n" << endl;
+			cin >> choice;
+		}
+
+		cin.ignore(100, '\n');
+		cout << endl;
+		if (choice == 0)
+		{
+			load_character();
+		}
+		else
+		{
+			playing = false;
+		}
 	}
 }
 
@@ -238,7 +268,6 @@ void Game::load_character()
 	int stamina=0;
 
 	int stat_points=0;
-	int skill_points=0;
 
 	if (in_file.is_open())
 	{
@@ -258,14 +287,13 @@ void Game::load_character()
 			in_file >> hp;
 			in_file >> stamina;
 			in_file >> stat_points;
-			in_file >> skill_points;
 			
 			//check double coppy last character
 			if (name !="")
 			{
 				Character temp(name, distanc_travelled,gold,level,exp,
 					strenght,vitality,dexterity,intelligence,
-					hp,stamina,stat_points,skill_points);
+					hp,stamina,stat_points);
 				character.push_back(Character(temp));
 				cout << "Character: " << name << " loaded!" << endl;
 			}
