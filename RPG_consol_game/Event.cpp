@@ -5,7 +5,7 @@ BattleMenu Event::get_battle_menu_choice()
 	int choice = 0;
 
 	cout << " = BAttle menu = \n\n";
-
+	
 	cout << "\n" << (int)BattleMenu::ESCAPE << ". Escape" << endl;
 	cout << "\n" << (int)BattleMenu::ATTACK << ". Attack" << endl;
 	cout << "\n" << (int)BattleMenu::DEFEND << ". Defend" << endl;
@@ -89,6 +89,7 @@ void Event::enemy_encounter(Character& character_, dArr<Enemy>& enemies_)
 	//Battle varibles
 	int damage = 0;
 	int gainExp = 0;
+	int gainGold = 0;
 	int playerTotal = 0;
 	int enemyTotal = 0;
 	int combatTotal = 0;
@@ -99,8 +100,12 @@ void Event::enemy_encounter(Character& character_, dArr<Enemy>& enemies_)
 	{
 		if (playerTurn && !playerDefeated)
 		{
+			cout << "HP: " << character_.get_hp() << " / " << character_.get_hp_max() << "\n";
 			//Menu
-
+			cout << "= Player turn = \n\n";
+			cout << "Continue..\n\n";
+			cin.get();
+			system("CLS");
 			//Move
 			switch (choice)
 			{
@@ -144,13 +149,6 @@ void Event::enemy_encounter(Character& character_, dArr<Enemy>& enemies_)
 				combatRollPlayer = rand() % playerTotal+1;
 				combatRollEnemy = rand() % enemyTotal+1;
 
-				////Test 
-				//cout << combatTotal << endl;
-				//cout << enemyTotal << endl;
-				//cout << playerTotal << endl;
-				//cout << combatRollPlayer << endl;
-				//cout << combatRollEnemy << endl;
-
 				cout << "Player roll: " << combatRollPlayer << "\n";
 				cout << "Enemy roll: " << combatRollEnemy << "\n\n";
 				if (combatRollPlayer > combatRollEnemy )//Hit
@@ -159,12 +157,19 @@ void Event::enemy_encounter(Character& character_, dArr<Enemy>& enemies_)
 					damage = character_.get_damage();
 					enemies_[choice].take_damage(damage);
 					cout << "Damage: " << damage << "!" << "\n\n";
+					cout << "HP: " << character_.get_hp() << " / " << character_.get_hp_max() << "\n";
 					if (!enemies_[choice].is_alive())
 					{
 						cout << "Enemy defated!" << endl;
 						gainExp = enemies_[choice].get_exp();
 						character_.gain_exp(gainExp);
-						cout << "exp gained : " << gainExp << endl;
+						gainGold = rand() % enemies_[choice].get_level() * 10 + 1;
+						character_.gain_gold(gainGold);
+						cout << "Exp gained : " << gainExp << endl;
+						cout << "Gold gained : " << gainGold << endl;
+
+
+
 						enemies_.remove(choice);
 					}
 				}
@@ -189,10 +194,23 @@ void Event::enemy_encounter(Character& character_, dArr<Enemy>& enemies_)
 		else if(!playerTurn && !playerDefeated && !escape && !enemyDefeated)
 		{
 			cout << "= ENEMY TURN =" << "\n";
+			cout << "Continue...\n\n";
+			cin.get();
+			system("CLS");
 			//Enemy attack
 			for (size_t i = 0; i < enemies_.size(); i++)
 			{
+				cout << "Contineu...\n\n";
+				cin.get();
+				system("CLS");
 				cout << "Enemy: " << i << "\n\n";
+				// Attack roll
+				combatTotal = enemies_[i].get_Accuracy() + character_.get_defence();
+				enemyTotal = enemies_[i].get_Accuracy() / (double)combatTotal * 100;
+				playerTotal = character_.get_defence() / (double)combatTotal * 100;
+				combatRollPlayer = rand() % playerTotal + 1;
+				combatRollEnemy = rand() % enemyTotal + 1;
+
 
 				cout << "Player roll: " << combatRollPlayer;
 				cout << "Enemy roll: " << combatRollEnemy;
@@ -238,6 +256,7 @@ void Event::puzzle_encounter(Character& character_)
 	int user_ans = 0;
 	int chances = 3;
 	int gein_exp = (chances * character_.get_level() * (rand() % 10 + 1));
+	int gain_gold = (chances * character_.get_level() * (rand() % 10 + 1));
 	Puzzle puzzle("Puzzles/1.txt");
 
 	while (!completed && chances > 0)
@@ -265,7 +284,9 @@ void Event::puzzle_encounter(Character& character_)
 		{
 			completed = true;
 			character_.gain_exp(gein_exp);
+			character_.gain_gold(gain_gold);
 			cout << "YOU GAUNED " << gein_exp << " EXP!\n\n";
+			cout << "YOU GAUNED " << gain_gold << " GOLD!\n\n";
 		}
 		
 	}

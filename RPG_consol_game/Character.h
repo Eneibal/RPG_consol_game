@@ -87,6 +87,7 @@ public:
 	void set_dist_travelled(int  distance_);
 	void travel();
 	void gain_exp(const int exp_);
+	void gain_gold(const int gold_);
 	void take_damage(const int damage_);
 };
 

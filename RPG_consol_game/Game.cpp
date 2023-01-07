@@ -118,6 +118,7 @@ void Game::main_menu()
 		if (MainMenu::QUIT)
 		{
 			playing = false;
+			save_character();
 		}
 	}
 	else
@@ -207,7 +208,18 @@ void Game::level_up_character()
 //Functions
 void Game::init_game()
 {
-	create_new_character();
+	ifstream in;
+	in.open("characters.txt");
+	if (in.is_open())
+	{
+		load_character();
+	}
+	else
+	{
+		create_new_character();
+		save_character();
+	}
+	in.close();
 
 	//system("pause");
 }
