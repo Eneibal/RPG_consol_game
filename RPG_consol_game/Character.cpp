@@ -333,6 +333,10 @@ void Character::gain_exp(int exp_)
 {
 	exp += exp_;
 }
+void Character::gain_gold(const int gold_)
+{
+	gold += gold_;
+}
 
 void Character::gain_gold(const int gold_)
 {

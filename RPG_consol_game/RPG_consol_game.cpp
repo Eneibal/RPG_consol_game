@@ -9,6 +9,6 @@ int main()
 	{
 		game.main_menu();
 	}
-
+	game.save_character();
 }
 
