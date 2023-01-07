@@ -64,8 +64,8 @@ public:
 	void level_up();	
 	void update_stats();
 	void add_to_stat(int stat_, int value_);
+	void reset_HP();
 	//Accessors
-
 	const int& get_dist_travel()const;
 	const string& get_name()const;
 	const int& get_level()const;
@@ -82,11 +82,14 @@ public:
 	const int& get_defence()const;
 	const int& get_luck()const;
 	const int& get_accuracy()const;
+	const int& get_gold()const;
 
 	//Modifier
 	void set_dist_travelled(int  distance_);
 	void travel();
 	void gain_exp(const int exp_);
+	void gain_gold(const int gold_);
+	void pay_gold(const int gold_);
 	void take_damage(const int damage_);
 };
 

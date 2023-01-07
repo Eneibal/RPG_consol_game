@@ -52,6 +52,7 @@ public:
 	void load_character();
 	void select_character();
 	void travel();
+	void rest();
 	//Accessors
 	bool get_playing()const;
 };

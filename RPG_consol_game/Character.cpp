@@ -66,6 +66,7 @@ Character::Character(string name_, int distance_travelled_,
 Character::~Character()
 {
 }
+
 //Functions
 void Character::initialize(const string name_)
 {
@@ -83,7 +84,7 @@ void Character::initialize(const string name_)
 	stat_points = 0;
 
 	update_stats();
-	hp = hp_max;
+	
 }
 
 void Character::print_stats()const
@@ -124,7 +125,7 @@ void Character::print_stats()const
 		<< ", Def: " << armor_arms.get_defence() << endl;
 	cout << "= Armor legs: " << armor_legs.get_name()
 		<< ", lvl: " << armor_legs.get_level()
-		<< ", Def: " << armor_legs.get_defence() << endl;
+		<< ", Def: " << armor_legs.get_defence() << endl<<endl;
 }
 
 void Character::level_up()
@@ -139,8 +140,7 @@ void Character::level_up()
 			17 * level - 12)) + 100;
 
 		stat_points++;
-		update_stats();
-		hp = hp_max;
+		update_stats();	
 
 		cout << "You are now LEVEL " << level << "!" << endl;
 	}
@@ -192,6 +192,11 @@ void Character::add_to_stat(int stat_, int value_)
 	}
 }
 
+void Character::reset_HP()
+{
+	hp = hp_max;
+}
+
 void Character::update_stats()
 {
 	exp_next = static_cast<int>((50 / 3) * ((pow(level, 3) -
@@ -206,7 +211,7 @@ void Character::update_stats()
 	defence = dexterity + (intelligence / 2);
 	accuracy = (dexterity / 2) + intelligence;
 	luck = intelligence;
-
+	hp = hp_max;
 }
 
 string Character::get_as_string()const
@@ -224,6 +229,8 @@ string Character::get_as_string()const
 		+ to_string(stamina) + " "
 		+ to_string(stat_points);
 }
+
+//Accessors
 
 const int& Character::get_dist_travel() const
 {
@@ -305,6 +312,11 @@ const int& Character::get_accuracy() const
 	return accuracy;
 }
 
+const int& Character::get_gold()const
+{
+	return gold;
+}
+
 //Modifire
 
 void Character::set_dist_travelled(int  distance_)
@@ -322,6 +334,16 @@ void Character::gain_exp(int exp_)
 	exp += exp_;
 }
 
+void Character::gain_gold(const int gold_)
+{
+	gold += gold_;
+}
+
+void Character::pay_gold(const int gold_)
+{
+	gold -= gold_;
+}
+
 void Character::take_damage(const int damage_)
 {
 	hp -= damage_;
@@ -330,3 +352,4 @@ void Character::take_damage(const int damage_)
 		hp = 0;
 	}
 }
+

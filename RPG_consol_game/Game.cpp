@@ -85,7 +85,7 @@ void Game::main_menu()
 				system("pause");
 				break;
 			case REST:
-
+				rest();
 				system("pause");
 				break;
 			case CHARACTERSHEET:
@@ -343,4 +343,55 @@ void Game::travel()
 	Event ev;
 
 	ev.gererate_event(character[active_characters],enemies);
+}
+
+void Game::rest()
+{
+	int rest_cost = character[active_characters].get_hp_max() -
+		character[active_characters].get_hp();
+	cout << "= Rest = \n\n";
+	cout << "Resting costs you: " << rest_cost<< "\n";
+	cout << "Your gold: "<<
+		character[active_characters].get_gold()<<"\n\n";
+
+	cout << "HP: " << character[active_characters].get_hp() <<" / " <<
+		character[active_characters].get_hp_max()<<"\n\n";
+
+	if (character[active_characters].get_gold() < rest_cost)
+	{
+		cout << "Not enought money, sorry bro!\n\n";
+	}
+	else if (character[active_characters].get_hp()>= character[active_characters].get_hp_max())
+	{
+		cout << "Alredy at full health buddy!\n\n";
+	}
+	else
+	{
+		cout << "\n\n Rest? (0) Yes, (1) No...\n\n";
+
+		cin >> choice;
+
+		while (cin.fail() || choice < 0 || choice >1)//check cin
+		{
+			cout << "Faulty input!" << endl;
+			cin.clear();
+			cin.ignore(100, '\n');
+			cout << "\n\n Rest? (0) Yes, (1) No...\n\n";
+			cin >> choice;
+		}
+
+		cin.ignore(100, '\n');
+		cout << endl;
+
+		if (choice == 0)
+		{
+			character[active_characters].reset_HP();
+			character[active_characters].pay_gold(rest_cost);
+			cout << "RESTED!\n\n";
+		}
+		else
+		{
+			cout << "Maybe next time!\n\n";
+		}
+	}
 }

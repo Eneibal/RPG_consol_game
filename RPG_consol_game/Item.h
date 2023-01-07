@@ -26,5 +26,19 @@ public:
 	const int & get_rarity()const;
 
 	//Modifiers
+
+	//Static
+	/*dArr<std::string> names;
+	static void */
+	static vector<std::string> names;
+	static void init_names()
 };
 
+enum rarity
+{
+	COMMON = 0 ,
+	UNCOMMON, 
+	RARE,
+	LEGENDARY,
+	MYTHIC,
+};
